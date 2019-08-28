@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- Entering the cmc and displaying the card -->
+	<div>
+		<label for="text">Generate a random boi!</label>
+		<input type="text" id="data">
+		<input type="submit" id="postSubmit">
+	</div>
+	<div id="results">
+		Heres the card!
+	</div>
+
+	<!-- Send a post request to print the card on the server -->
+	<form action="/printCard" method="POST">
+		<button>Print</button>
+		<img src="" id="magicPicture" name="magicPicture">
+	</form>
+</body>
+<script type="text/javascript">
+	document.getElementById('postSubmit').addEventListener('click', function(event){
+	var cmc = document.getElementById("data").value;
+    var req = new XMLHttpRequest();
+    req.open('GET', 'https://api.scryfall.com/cards/random?q=f%3Avintage+cmc%3A'+ cmc + '+t%3Acreature', true);
+    req.addEventListener('load',function(){
+      if(req.status >= 200 && req.status < 400){
+        var response = JSON.parse(req.responseText);
+        document.getElementById('magicPicture').src = response.image_uris.png;
+      } else {
+        console.log("Error in network request: " + req.statusText);
+      }});
+    req.send(null);
+    event.preventDefault();
+  });
+</script>
+</html>
