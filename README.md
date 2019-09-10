@@ -1,5 +1,6 @@
 # Magic the Gathering: Momir Server
 Description of the Momir format: https://mtg.gamepedia.com/Momir
+
 TLDR: Momir is a card game format that essentially requires access to large subset of every card ever
 printed, at random.  It is only ever really capable of being played online.  
 
