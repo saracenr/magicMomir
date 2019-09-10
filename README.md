@@ -22,4 +22,4 @@ Processing - a bitmap converter program
 
 ### Images
 
-![Momir](\images\card.png)
+![Momir](/images/momir.jpg)
