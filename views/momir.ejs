@@ -6,18 +6,22 @@
 <body>
 	<!-- Entering the cmc and displaying the card -->
 	<div>
-		<label for="text">Generate a random boi!</label>
+		<label for="text">Generate a random card with provided CMC!</label>
 		<input type="text" id="data">
 		<input type="submit" id="postSubmit">
 	</div>
 	<div id="results">
 		Heres the card!
 	</div>
+	<div>
+		<img src="" id="magicPicture" name="magicPicture">
+	</div>
 
 	<!-- Send a post request to print the card on the server -->
-	<form action="/printCard" method="POST">
-		<button>Print</button>
-		<img src="" id="magicPicture" name="magicPicture">
+	<form action="/printCard" method="POST" enctype="multipart/form-data">
+		<input type="file" id='imageFile' name='imageFile' hidden="yes">
+		<input type="text" id='imageSRC' name='imageSRC' hidden="yes">
+		<input type="submit" name="printCard" value="Print">
 	</form>
 </body>
 <script type="text/javascript">
@@ -29,6 +33,8 @@
       if(req.status >= 200 && req.status < 400){
         var response = JSON.parse(req.responseText);
         document.getElementById('magicPicture').src = response.image_uris.png;
+	document.getElementById('imageSRC').value = response.image_uris.png;
+	document.getElementById('imageFile').value = response.image_uris.png;
       } else {
         console.log("Error in network request: " + req.statusText);
       }});
