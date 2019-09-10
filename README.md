@@ -17,9 +17,12 @@ Dependencies:
 * Body-parse
 * Request
 
-Program:
-Processing - a bitmap converter program
+Programs:
+* Processing - a bitmap converter program
 
 ### Images
 
 ![Momir](/images/momir.jpg)
+![Karona](/images/card.png)
+![karonaPrint](/images/karonaPrint.jpg)
+![raspi](/images/raspi.jpg)
