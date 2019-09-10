@@ -24,6 +24,7 @@ app.post("/printCard", upload.single('imageFile'), function(req, res){
       console.log(err);
     else
       console.log("The file was saved!");
+// Calls a shell command for Processing to convert the png to a bitmap and print it		
       var exec = require('child_process').exec, child;
       child = exec('lp -o fit-to-page /home/pi/magic/magic/images/card.png',
       function (error, stdout, stderr) {
@@ -35,8 +36,6 @@ app.post("/printCard", upload.single('imageFile'), function(req, res){
     });
   }); 
 });
-//	const spawn = require("child_process").spawn;
-//	const pythonProcess = spawn('python3',["/home/pi/magic/magic/pythonPrint.py", magicImage]);
 	console.log(req.body.imageSRC)
 	res.redirect("/");
 });
