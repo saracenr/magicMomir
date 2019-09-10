@@ -19,23 +19,23 @@ app.post("/printCard", upload.single('imageFile'), function(req, res){
 	var imageSource = req.body.imageSRC
 	//  Downloads the file locally to local/images/card.png
 	request.get({url: imageSource, encoding: null}, function (err, response, body) {
-	fs.writeFile("images/card.png", body, null, function(err) {
-    if(err)
-      console.log(err);
-    else
-      console.log("The file was saved!");
-// Calls a shell command for Processing to convert the png to a bitmap and print it		
-      var exec = require('child_process').exec, child;
-      child = exec('lp -o fit-to-page /home/pi/magic/magic/images/card.png',
-      function (error, stdout, stderr) {
-        console.log('stdout: ' + stdout);
-        console.log('stderr: ' + stderr);
-        if (error !== null) {
-             console.log('exec error: ' + error);
-        }
-    });
-  }); 
-});
+		fs.writeFile("images/card.png", body, null, function(err) {
+			if(err)
+				console.log(err);
+			else
+				console.log("The file was saved!");
+			// Calls a shell command for Processing to convert the png to a bitmap and print it		
+			var exec = require('child_process').exec, child;
+			child = exec('lp -o fit-to-page /home/pi/magic/magic/images/card.png',
+				     function (error, stdout, stderr) {
+				console.log('stdout: ' + stdout);
+				console.log('stderr: ' + stderr);
+				if (error !== null) {
+					console.log('exec error: ' + error);
+				}
+			});
+		}); 
+	});
 	console.log(req.body.imageSRC)
 	res.redirect("/");
 });
